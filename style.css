@@ -20,12 +20,48 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
-  background-image:
-    radial-gradient(circle at 15% 10%, rgba(13, 43, 78, 0.5), transparent 42%),
-    radial-gradient(circle at 85% 80%, rgba(198, 230, 46, 0.08), transparent 42%),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 42px 42px, 42px 42px;
+}
+
+/* --- PROFESIONÁLNÍ TECH POZADÍ S MŘÍŽKOU A PROUDEM --- */
+.cyber-bg {
+  position: relative;
+  background-color: var(--bg-dark);
+  background-image: 
+    linear-gradient(rgba(198, 230, 46, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 230, 46, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Animované elektrické čáry (proud) */
+.electric-line-1 {
+  position: absolute;
+  top: 15%;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--volt), transparent);
+  animation: moveElectricLine 7s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.electric-line-2 {
+  position: absolute;
+  top: 55%;
+  left: -100%;
+  width: 180%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  animation: moveElectricLine 10s linear infinite 3s;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes moveElectricLine {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(60%); }
 }
 
 /* 3-vodičový pruh nahoře (L hnědá, PE zelenožlutá, N modrá) */
@@ -33,6 +69,8 @@ body {
   height: 4px;
   width: 100%;
   background: linear-gradient(90deg, #63361b 0%, #63361b 33.3%, #c6e62e 33.3%, #22c55e 66.6%, #0284c7 66.6%, #0d2b4e 100%);
+  position: relative;
+  z-index: 110;
 }
 
 /* Hlavička a navigace */
@@ -40,7 +78,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(7, 11, 20, 0.9);
+  background: rgba(7, 11, 20, 0.92);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
@@ -139,11 +177,13 @@ body {
   cursor: pointer;
 }
 
-/* Rozvržení a typografie */
+/* Kontejnery a typografie */
 .container {
   max-width: 1240px;
   margin: 0 auto;
   padding: 4rem 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .badge {
@@ -159,11 +199,10 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 1.2rem;
 }
 
 h1 {
-  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -179,7 +218,7 @@ h1 {
 .lead {
   color: var(--text-muted);
   font-size: 1.12rem;
-  max-width: 650px;
+  max-width: 620px;
   margin-bottom: 2rem;
 }
 
@@ -191,7 +230,7 @@ h1 {
   background: var(--volt);
   color: #070b14;
   font-weight: 800;
-  padding: 0.95rem 1.75rem;
+  padding: 0.9rem 1.75rem;
   border-radius: 12px;
   text-decoration: none;
   border: none;
@@ -213,7 +252,7 @@ h1 {
   background: var(--bg-card);
   color: var(--text-main);
   font-weight: 700;
-  padding: 0.95rem 1.75rem;
+  padding: 0.9rem 1.75rem;
   border-radius: 12px;
   text-decoration: none;
   border: 1px solid var(--border);
@@ -227,8 +266,7 @@ h1 {
   color: var(--volt);
 }
 
-/* Mřížky a karty */
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+/* Karty a mřížky */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
 .card {
@@ -245,21 +283,13 @@ h1 {
   transform: translateY(-3px);
 }
 
-.card-img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1.25rem;
-  border: 1px solid var(--border);
-  display: block;
-}
-
 /* Patička */
 footer {
   border-top: 1px solid var(--border);
   background: #050810;
   margin-top: 4rem;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-inner {
@@ -274,7 +304,7 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
   .nav-links {
     display: none;
     flex-direction: column;
@@ -289,54 +319,4 @@ footer {
   .nav-links.open { display: flex; }
   .mobile-toggle { display: block; }
   .sos-btn { display: none; }
-}
-/* --- ANIMOVANÉ ELEKTRICKÉ ČÁRY NA POZADÍ --- */
-.cyber-bg {
-  position: relative;
-  overflow: hidden;
-}
-
-.cyber-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(198, 230, 46, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(198, 230, 46, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Pohybující se elektrická čára 1 */
-.electric-line-1 {
-  position: absolute;
-  top: 15%;
-  left: -100%;
-  width: 200%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--volt), transparent);
-  animation: moveElectricLine 6s linear infinite;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Pohybující se elektrická čára 2 */
-.electric-line-2 {
-  position: absolute;
-  top: 65%;
-  left: -100%;
-  width: 150%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  animation: moveElectricLine 9s linear infinite 2s;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-@keyframes moveElectricLine {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(60%); }
 }
