@@ -1,88 +1,143 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulačka ceny | ELMONT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulačka ceny | ELMONT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .calc-option { padding: 1rem; border-radius: 12px; border: 1px solid var(--border); background: #09101f; color: var(--text-muted); cursor: pointer; text-align: left; transition: 0.2s; }
+    .calc-option.active { border-color: var(--volt); background: rgba(198, 230, 46, 0.12); color: #fff; }
+    .addon-label { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--border); background: #09101f; cursor: pointer; margin-bottom: 0.6rem; }
+    .addon-label input { accent-color: var(--volt); width: 18px; height: 18px; }
+    .summary-box { position: sticky; top: 100px; background: linear-gradient(160deg, #0d192e, #09101f); border: 1px solid rgba(198, 230, 46, 0.4); border-radius: 20px; padding: 2rem; }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+<body>
+  <div class="conductor-bar"></div>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <img src="images/logo.png" alt="ELMONT Logo">
+        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Domů</a>
+        <a href="sluzby.html">Služby</a>
+        <a href="kalkulacka.html" class="active">Kalkulačka</a>
+        <a href="realizace.html">Realizace</a>
+        <a href="o-nas.html">O nás</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
+    </div>
+  </header>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="images/logo.png" alt="ELMONT Logo" class="h-12 w-auto object-contain">
-                <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-wider text-white">ELMONT</span>
-                    <span class="text-[10px] tracking-widest text-amber-400 font-semibold uppercase">Elektroinstalace & Montáže</span>
-                </div>
-            </a>
-            <nav class="hidden md:flex items-center gap-8 font-medium">
-                <a href="index.html" class="text-slate-300 hover:text-amber-400 transition-colors">Domů</a>
-                <a href="sluzby.html" class="text-slate-300 hover:text-amber-400 transition-colors">Služby</a>
-                <a href="kalkulacka.html" class="text-amber-400 transition-colors">Kalkulačka ceny</a>
-                <a href="kontakt.html" class="text-slate-300 hover:text-amber-400 transition-colors">Kontakt</a>
-            </nav>
-            <a href="tel:+420777123456" class="hidden lg:flex items-center gap-2 bg-red-600/20 border border-red-500/50 hover:bg-red-600 text-red-400 hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all">
-                <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
-                <span>Havarijní linka 24/7</span>
-            </a>
+  <main class="container">
+    <div class="badge">🧮 Konfigurátor zakázky</div>
+    <h1>Orientační <span class="text-volt">kalkulačka ceny</span></h1>
+    <p class="lead">Sestavte si rozsah elektroinstalace a přeneste výsledek jedním kliknutím do nezávazné poptávky.</p>
+
+    <div class="grid-2" style="grid-template-columns: 1.3fr 0.7fr;">
+      <div class="card" style="display:flex; flex-direction:column; gap:1.75rem;">
+        <div>
+          <label style="font-weight:700; display:block; margin-bottom:0.75rem;">1. Typ objektu</label>
+          <div class="grid-3">
+            <button class="calc-option active" data-rate="850" data-name="Byt / Rekonstrukce" onclick="selectObj(this)"><strong>Byt</strong><br><small>Rekonstrukce / novostavba</small></button>
+            <button class="calc-option" data-rate="1050" data-name="Rodinný dům" onclick="selectObj(this)"><strong>Rodinný dům</strong><br><small>Kompletní rozvody</small></button>
+            <button class="calc-option" data-rate="1350" data-name="Komerční / Průmysl" onclick="selectObj(this)"><strong>Firma / Hala</strong><br><small>Silnoproud & technologie</small></button>
+          </div>
         </div>
-    </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-16">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-black mb-4">Interaktivní <span class="text-amber-400">kalkulačka ceny</span></h1>
-            <p class="text-slate-400">Získejte rychlý orientační odhad nákladů na vaše elektroinstalace.</p>
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+            <label style="font-weight:700;">2. Podlahová plocha objektu</label>
+            <strong style="color:var(--volt); font-size:1.1rem;"><span id="areaDisplay">120</span> m²</strong>
+          </div>
+          <input type="range" id="areaRange" min="30" max="400" step="5" value="120" style="width:100%; accent-color:var(--volt);" oninput="recalc()">
         </div>
 
-        <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl space-y-8 shadow-xl">
-            <div>
-                <label class="block text-sm font-semibold mb-3 text-slate-300">1. Typ objektu:</label>
-                <div class="grid grid-cols-2 gap-4">
-                    <button onclick="setObjekt(450, this)" class="type-btn p-4 rounded-xl border border-amber-500 bg-amber-500/10 text-left font-bold transition-all">Byt / Menší dům</button>
-                    <button onclick="setObjekt(750, this)" class="type-btn p-4 rounded-xl border border-slate-800 bg-slate-950 text-left font-bold text-slate-400 transition-all">Rodinný dům / Vila</button>
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold mb-3 text-slate-300">2. Orientační plocha (m²):</label>
-                <input type="range" id="metry" min="30" max="300" value="100" class="w-full accent-amber-500 bg-slate-950" oninput="vypocet()">
-                <div class="text-right text-amber-400 font-bold mt-2"><span id="m2val">100</span> m²</div>
-            </div>
-
-            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                    <span class="text-xs text-slate-400 block">Odhadovaná cena bez DPH:</span>
-                    <span id="celkovaCena" class="text-3xl font-black text-white">45 000 Kč</span>
-                </div>
-                <a href="kontakt.html" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg shadow-amber-500/20">
-                    Odeslat tuto poptávku
-                </a>
-            </div>
+        <div>
+          <label style="font-weight:700; display:block; margin-bottom:0.75rem;">3. Úroveň výbavy</label>
+          <div class="grid-3">
+            <button class="calc-option active" data-mult="1" data-std="Klasik" onclick="selectStd(this)"><strong>Klasik</strong><br><small>Standardní okruhy</small></button>
+            <button class="calc-option" data-mult="1.25" data-std="Komfort" onclick="selectStd(this)"><strong>Komfort</strong><br><small>Více okruhů + datové sítě</small></button>
+            <button class="calc-option" data-mult="1.65" data-std="Smart Home" onclick="selectStd(this)"><strong>Smart Home</strong><br><small>Chytré řízení Loxone</small></button>
+          </div>
         </div>
-    </main>
 
-    <script>
-        let sazbaZaM2 = 450;
-        function setObjekt(sazba, el) {
-            document.querySelectorAll('.type-btn').forEach(b => {
-                b.classList.remove('border-amber-500', 'bg-amber-500/10', 'text-white');
-                b.classList.add('border-slate-800', 'bg-slate-950', 'text-slate-400');
-            });
-            el.classList.remove('border-slate-800', 'bg-slate-950', 'text-slate-400');
-            el.classList.add('border-amber-500', 'bg-amber-500/10', 'text-white');
-            sazbaZaM2 = sazba;
-            vypocet();
-        }
-        function vypocet() {
-            let m2 = document.getElementById('metry').value;
-            document.getElementById('m2val').innerText = m2;
-            let celkem = m2 * sazbaZaM2;
-            document.getElementById('celkovaCena').innerText = celkem.toLocaleString() + ' Kč';
-        }
-    </script>
+        <div>
+          <label style="font-weight:700; display:block; margin-bottom:0.75rem;">4. Doplňkové moduly</label>
+          <label class="addon-label"><span>Hromosvod včetně revize (+ 22 000 Kč)</span><input type="checkbox" class="addon" data-price="22000" data-label="Hromosvod" onchange="recalc()"></label>
+          <label class="addon-label"><span>Příprava / montáž Wallboxu 11 kW (+ 18 500 Kč)</span><input type="checkbox" class="addon" data-price="18500" data-label="Wallbox 11 kW" onchange="recalc()"></label>
+          <label class="addon-label"><span>Kamerový & zabezpečovací systém (+ 26 000 Kč)</span><input type="checkbox" class="addon" data-price="26000" data-label="CCTV & EZS" onchange="recalc()"></label>
+        </div>
+      </div>
+
+      <div>
+        <div class="summary-box">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--volt); font-weight:700; margin-bottom:0.5rem;">Předběžná kalkulace</div>
+          <div id="totalPrice" style="font-size:2.4rem; font-weight:900; color:#fff; margin-bottom:0.25rem;">102 000 Kč</div>
+          <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Orientační cena práce vč. základního materiálu (bez DPH)</div>
+          <div id="summaryDetails" style="font-size:0.88rem; color:var(--text-muted); border-top:1px solid var(--border); padding-top:1rem; margin-bottom:1.5rem; line-height:1.8;"></div>
+          <button class="btn-primary" style="width:100%; justify-content:center;" onclick="sendToContact()">Poptat tuto konfiguraci →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
+        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
+      </div>
+      <div style="color:var(--text-muted); font-size:0.88rem;">
+        📞 <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:#fff; text-decoration:none; font-weight:700;"></a> &nbsp;|&nbsp;
+        ✉️ <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--volt); text-decoration:none; font-weight:700;"></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script>
+    let rate = 850, objName = 'Byt / Rekonstrukce', mult = 1, stdName = 'Klasik';
+    function selectObj(el) {
+      el.parentElement.querySelectorAll('.calc-option').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      rate = Number(el.dataset.rate); objName = el.dataset.name; recalc();
+    }
+    function selectStd(el) {
+      el.parentElement.querySelectorAll('.calc-option').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      mult = Number(el.dataset.mult); stdName = el.dataset.std; recalc();
+    }
+    function recalc() {
+      const area = Number(document.getElementById('areaRange').value);
+      document.getElementById('areaDisplay').textContent = area;
+      let addonsTotal = 0, addonNames = [];
+      document.querySelectorAll('.addon:checked').forEach(ch => {
+        addonsTotal += Number(ch.dataset.price);
+        addonNames.push(ch.dataset.label);
+      });
+      const total = Math.round(area * rate * mult + addonsTotal);
+      document.getElementById('totalPrice').textContent = total.toLocaleString('cs-CZ') + ' Kč';
+      document.getElementById('summaryDetails').innerHTML =
+        `• Objekt: <strong style="color:#fff">${objName}</strong><br>` +
+        `• Plocha: <strong style="color:#fff">${area} m²</strong><br>` +
+        `• Standard: <strong style="color:#fff">${stdName}</strong><br>` +
+        `• Doplňky: <strong style="color:#fff">${addonNames.length ? addonNames.join(', ') : 'Žádné'}</strong>`;
+      return { total, area, addonNames };
+    }
+    function sendToContact() {
+      const { total, area, addonNames } = recalc();
+      const text = `Dobrý den, mám zájem o nezávaznou nabídku dle kalkulačky:\n- Objekt: ${objName}\n- Plocha: ${area} m²\n- Standard: ${stdName}\n- Doplňky: ${addonNames.length ? addonNames.join(', ') : 'Bez doplňků'}\n- Orientační cena z kalkulačky: ${total.toLocaleString('cs-CZ')} Kč`;
+      localStorage.setItem('elmont_poptavka', text);
+      window.location.href = 'kontakt.html';
+    }
+    recalc();
+  </script>
 </body>
 </html>
