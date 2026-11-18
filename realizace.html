@@ -1,104 +1,35 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Realizace | ELMONT – Elektroinstalace & Montáže</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .filter-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .filter-btn { padding: 0.6rem 1.2rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-weight: 700; cursor: pointer; }
-    .filter-btn.active { border-color: var(--volt); color: var(--volt); background: rgba(198, 230, 46, 0.12); }
-    .tag { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--volt); background: rgba(198, 230, 46, 0.12); padding: 0.25rem 0.6rem; border-radius: 6px; margin-bottom: 0.6rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELMONT – Realizace a projekty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { elmont: { base: '#070B14', surface: '#0E1626', volt: '#C5F03D' } } } } }</script>
 </head>
-<body>
-  <div class="conductor-bar"></div>
-  <header class="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html">Domů</a>
-        <a href="sluzby.html">Služby</a>
-        <a href="kalkulacka.html">Kalkulačka</a>
-        <a href="realizace.html" class="active">Realizace</a>
-        <a href="o-nas.html">O nás</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
-      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="badge">📸 Vybrané zakázky</div>
-    <h1>Naše <span class="text-volt">realizace</span> v praxi</h1>
-    <p class="lead">Ukázky precizně zapojených rozvaděčů, moderních rodinných domů i průmyslových instalací.</p>
-
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterProjects('all', this)">Všechny zakázky</button>
-      <button class="filter-btn" onclick="filterProjects('domy', this)">Rodinné domy & Smart</button>
-      <button class="filter-btn" onclick="filterProjects('prumysl', this)">Průmysl & Rozvaděče</button>
-      <button class="filter-btn" onclick="filterProjects('fve', this)">FVE & Wallboxy</button>
-    </div>
-
-    <div class="grid-2" id="projectsGrid">
-      <div class="card project-item" data-cat="domy">
-        <img src="images/realizace-1.jpg" alt="Moderní vila Smart Home" class="card-img" style="height:260px;">
-        <span class="tag">Rodinné domy & Smart</span>
-        <h3 style="margin-bottom:0.5rem;">Novostavba vily 240 m² – Loxone & LED scény</h3>
-        <p style="color:var(--text-muted); font-size:0.92rem;">Kompletní silnoproudá a slaboproudá instalace, 68 jisticích okruhů, řízení vytápění, venkovních žaluzií a designové LED osvětlení.</p>
-      </div>
-
-      <div class="card project-item" data-cat="prumysl">
-        <img src="images/realizace-2.jpg" alt="Průmyslový hlavní rozvaděč 400A" class="card-img" style="height:260px;">
-        <span class="tag">Průmysl & Rozvaděče</span>
-        <h3 style="margin-bottom:0.5rem;">Hlavní rozvaděč 400 A pro výrobní halu</h3>
-        <p style="color:var(--text-muted); font-size:0.92rem;">Návrh, výroba a oživení rozvaděče Schneider Electric, páteřní kabelové lávky, napájení CNC strojů a výchozí revize.</p>
-      </div>
-
-      <div class="card project-item" data-cat="fve">
-        <img src="images/realizace-3.jpg" alt="Fotovoltaická elektrárna a Wallbox" class="card-img" style="height:260px;">
-        <span class="tag">FVE & Wallboxy</span>
-        <h3 style="margin-bottom:0.5rem;">FVE 15 kWp + bateriové úložiště a 2× Wallbox</h3>
-        <p style="color:var(--text-muted); font-size:0.92rem;">Kompletní AC/DC propojení, přepěťové ochrany, automatické zálohování vybraných okruhů domu a dynamické nabíjení elektromobilů.</p>
-      </div>
-
-      <div class="card project-item" data-cat="domy">
-        <img src="images/realizace-4.jpg" alt="Rekonstrukce bytového jádra a rozvodů" class="card-img" style="height:260px;">
-        <span class="tag">Rodinné domy & Smart</span>
-        <h3 style="margin-bottom:0.5rem;">Kompletní rekonstrukce elektroinstalace bytu 4+kk</h3>
-        <p style="color:var(--text-muted); font-size:0.92rem;">Náhrada starého hliníkového vedení za měď, nový bytový rozvaděč s proudovými chrániči a datové zásuvky v každém pokoji.</p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </div>
-      <div style="color:var(--text-muted); font-size:0.88rem;">
-        📞 <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:#fff; text-decoration:none; font-weight:700;"></a> &nbsp;|&nbsp;
-        ✉️ <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--volt); text-decoration:none; font-weight:700;"></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="app.js"></script>
-  <script>
-    function filterProjects(cat, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.project-item').forEach(item => {
-        item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
-      });
-    }
-  </script>
+<body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
+    <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-heading font-extrabold text-xl text-white">ELMONT</a>
+            <nav class="flex gap-4 text-sm font-bold">
+                <a href="index.html" class="text-slate-300">Domů</a>
+                <a href="realizace.html" class="text-elmont-volt">Realizace</a>
+                <a href="kontakt.html" class="text-slate-300">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 py-16 flex-grow">
+        <h1 class="text-4xl font-extrabold mb-6">Dokončené realizace</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-elmont-surface rounded-3xl overflow-hidden border border-slate-800 p-6">
+                <h3 class="text-xl font-bold mb-2">Novostavba rodinného domu Kuřim</h3>
+                <p class="text-slate-400 text-sm">Kompletní silnoproudé rozvody 3×25A, 46 jištěných okruhů a revizní zpráva.</p>
+            </div>
+            <div class="bg-elmont-surface rounded-3xl overflow-hidden border border-slate-800 p-6">
+                <h3 class="text-xl font-bold mb-2">Chytrá domácnost Loxone Tišnov</h3>
+                <p class="text-slate-400 text-sm">Automatizace stínění, vytápění a wallbox 22 kW.</p>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
