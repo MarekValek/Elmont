@@ -1,107 +1,35 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt | ELMONT – Elektroinstalace & Montáže</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .form-input { width: 100%; background: #09101f; border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; color: #fff; font-family: inherit; font-size: 0.95rem; margin-top: 0.4rem; }
-    .form-input:focus { outline: none; border-color: var(--volt); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELMONT – Kontakt a poptávka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { elmont: { base: '#070B14', surface: '#0E1626', volt: '#C5F03D' } } } } }</script>
 </head>
-<body>
-  <div class="conductor-bar"></div>
-  <header class="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html">Domů</a>
-        <a href="sluzby.html">Služby</a>
-        <a href="kalkulacka.html">Kalkulačka</a>
-        <a href="realizace.html">Realizace</a>
-        <a href="o-nas.html">O nás</a>
-        <a href="kontakt.html" class="active">Kontakt</a>
-      </nav>
-      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="badge">📩 Rychlá poptávka</div>
-    <h1>Spojte se s <span class="text-volt">ELMONT</span></h1>
-    <p class="lead">Pošlete nám nezávaznou poptávku nebo zavolejte. Ozveme se vám nejpozději do 24 hodin.</p>
-
-    <div class="grid-2">
-      <form class="card" onsubmit="event.preventDefault(); document.getElementById('formSuccess').style.display='block'; this.reset();">
-        <div style="margin-bottom:1.1rem;">
-          <label style="font-weight:600; font-size:0.9rem;">Jméno a příjmení / Firma *</label>
-          <input type="text" required class="form-input" placeholder="Jan Novák">
+<body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
+    <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-heading font-extrabold text-xl text-white">ELMONT</a>
+            <nav class="flex gap-4 text-sm font-bold">
+                <a href="index.html" class="text-slate-300">Domů</a>
+                <a href="kontakt.html" class="text-elmont-volt">Kontakt</a>
+            </nav>
         </div>
-        <div class="grid-2" style="gap:1rem; margin-bottom:1.1rem;">
-          <div>
-            <label style="font-weight:600; font-size:0.9rem;">Telefon *</label>
-            <input type="tel" required class="form-input" placeholder="+420 777 000 000">
-          </div>
-          <div>
-            <label style="font-weight:600; font-size:0.9rem;">E-mail *</label>
-            <input type="email" required class="form-input" placeholder="jan@novak.cz">
-          </div>
-        </div>
-        <div style="margin-bottom:1.4rem;">
-          <label style="font-weight:600; font-size:0.9rem;">Popis zakázky nebo rozpis z kalkulačky *</label>
-          <textarea id="zprava" rows="5" required class="form-input" placeholder="Popište prosím lokalitu a rozsah prací..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Odeslat nezávaznou poptávku ⚡</button>
-        <div id="formSuccess" style="display:none; margin-top:1rem; padding:1rem; border-radius:10px; background:rgba(198,230,46,0.15); border:1px solid var(--volt); color:var(--volt); font-weight:600;">
-          ✓ Děkujeme! Vaše poptávka byla přijata, brzy se vám ozveme.
-        </div>
-      </form>
-
-      <div style="display:flex; flex-direction:column; gap:1.5rem;">
-        <div class="card">
-          <h3 style="margin-bottom:1rem;">Přímé kontakty</h3>
-          <p style="margin-bottom:0.75rem;">📞 <strong>Telefon:</strong> <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:var(--volt); text-decoration:none; font-weight:700;"></a></p>
-          <p style="margin-bottom:0.75rem;">🚨 <strong>Havarijní linka 24/7:</strong> <a href="#" data-contact-href="havarijniHref" data-contact="havarijniLinka" style="color:#fca5a5; text-decoration:none; font-weight:700;"></a></p>
-          <p style="margin-bottom:0.75rem;">
-            ✉️ <strong>E-mail:</strong> <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--cyan); text-decoration:none; font-weight:700;"></a>
-            <button type="button" onclick="copyEmail()" style="margin-left:0.5rem; background:#131d33; border:1px solid var(--border); color:#fff; padding:0.25rem 0.6rem; border-radius:6px; cursor:pointer; font-size:0.78rem;">Kopírovat</button>
-            <span id="copyStatus" style="display:none; color:var(--volt); font-size:0.78rem; margin-left:0.4rem;">✓ Zkopírováno</span>
-          </p>
-          <p style="color:var(--text-muted); font-size:0.9rem;">🕒 <span data-contact="pracovniDoba"></span></p>
-        </div>
-
-        <div class="card">
-          <h3 style="margin-bottom:0.75rem;">Fakturační údaje & Působnost</h3>
-          <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.8;">
-            <strong style="color:#fff;"><span data-contact="nazevFirmy"></span> – <span data-contact="podtitul"></span></strong><br>
-            Sídlo: <span data-contact="adresa"></span><br>
-            IČO: <span data-contact="ico"></span> | DIČ: <span data-contact="dic"></span><br>
-            Působnost: <span data-contact="pusobnost"></span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </div>
-      <div style="color:var(--text-muted); font-size:0.88rem;">
-        📞 <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:#fff; text-decoration:none; font-weight:700;"></a> &nbsp;|&nbsp;
-        ✉️ <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--volt); text-decoration:none; font-weight:700;"></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+    </header>
+    <main class="max-w-3xl mx-auto px-4 py-16 flex-grow">
+        <h1 class="text-4xl font-extrabold mb-6">Nezávazná poptávka</h1>
+        <form onsubmit="event.preventDefault(); alert('Poptávka byla odeslána!');" class="bg-elmont-surface p-8 rounded-3xl border border-slate-800 space-y-4">
+            <div>
+                <label class="block text-xs uppercase font-bold text-slate-300 mb-1">Jméno / Firma</label>
+                <input type="text" required class="w-full px-4 py-3 rounded-xl bg-elmont-base border border-slate-700 text-white">
+            </div>
+            <div>
+                <label class="block text-xs uppercase font-bold text-slate-300 mb-1">Telefon</label>
+                <input type="tel" required class="w-full px-4 py-3 rounded-xl bg-elmont-base border border-slate-700 text-white">
+            </div>
+            <button type="submit" class="w-full bg-elmont-volt text-elmont-base font-bold py-3.5 rounded-xl">Odeslat poptávku</button>
+        </form>
+    </main>
 </body>
 </html>
