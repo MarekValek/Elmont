@@ -159,16 +159,87 @@
 
                     <!-- 3-vodičový interaktivní panel -->
                     <div class="lg:col-span-5">
-                        <div class="bg-elmont-surface/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-700 shadow-cyber">
-                            <h3 class="font-heading font-bold text-lg text-white mb-4">3 pilíře našich instalací</h3>
-                            <div class="grid grid-cols-3 gap-2 mb-5" id="wire-pillar-tabs">
-                                <button type="button" data-pillar="L" class="pillar-tab active py-2.5 px-3 rounded-xl font-mono text-xs font-bold border-2 border-elmont-copper bg-elmont-copper/40 text-white cursor-pointer">L · FÁZE</button>
-                                <button type="button" data-pillar="PE" class="pillar-tab py-2.5 px-3 rounded-xl font-mono text-xs font-bold border-2 border-slate-700 bg-elmont-base text-slate-300 cursor-pointer">PE · OCHRANA</button>
-                                <button type="button" data-pillar="N" class="pillar-tab py-2.5 px-3 rounded-xl font-mono text-xs font-bold border-2 border-slate-700 bg-elmont-base text-slate-300 cursor-pointer">N · SMART</button>
+                        <div class="bg-elmont-surface/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-700/80 shadow-cyber relative overflow-hidden">
+                            <div class="absolute -right-16 -top-16 w-48 h-48 bg-elmont-volt/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                            <!-- Hlavička panelu -->
+                            <div class="flex items-center justify-between mb-5 pb-4 border-b border-slate-800">
+                                <div>
+                                    <span class="font-mono text-[11px] uppercase tracking-widest text-slate-400">Architektura ELMONT</span>
+                                    <h2 class="font-heading font-bold text-lg text-white">3 pilíře našich instalací</h2>
+                                </div>
+                                <span class="font-mono text-xs px-2.5 py-1 rounded bg-elmont-base text-elmont-volt border border-slate-700">400V / 230V</span>
                             </div>
-                            <div id="pillar-content-L" class="pillar-panel text-sm text-slate-300">Kompletní domovní elektroinstalace, průmyslové haly, kabelové trasy a zakázková výroba rozvaděčů.</div>
-                            <div id="pillar-content-PE" class="pillar-panel hidden text-sm text-slate-300">Výchozí i pravidelné revize elektroinstalací a hromosvodů s protokoly dle ČSN.</div>
-                            <div id="pillar-content-N" class="pillar-panel hidden text-sm text-slate-300">Inteligentní řízení Loxone, KNX, fotovoltaika a rychlonabíjecí stanice.</div>
+
+                            <!-- Přepínače vodičů -->
+                            <div class="grid grid-cols-3 gap-2 mb-5" id="wire-pillar-tabs">
+                                <button type="button" data-pillar="L" class="pillar-tab active py-2.5 px-3 rounded-xl font-mono text-xs font-bold border-2 border-elmont-copper bg-elmont-copper/40 text-white transition-all cursor-pointer flex items-center justify-center">
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-elmont-copper mr-1.5 flex-shrink-0"></span>L · FÁZE
+                                </button>
+                                <button type="button" data-pillar="PE" class="pillar-tab py-2.5 px-3 rounded-xl font-mono text-xs font-bold border-2 border-slate-700 bg-elmont-base text-slate-300 hover:border-elmont-volt transition-all cursor-pointer flex items-center justify-center">
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-elmont-volt mr-1.5 flex-shrink-0"></span>PE · OCHRANA
+                                </button>
+                                <button type="button" data-pillar="N" class="pillar-tab py-2.5 px-3 rounded-xl font-mono text-xs font-bold border-2 border-slate-700 bg-elmont-base text-slate-300 hover:border-sky-400 transition-all cursor-pointer flex items-center justify-center">
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-sky-400 mr-1.5 flex-shrink-0"></span>N · SMART
+                                </button>
+                            </div>
+
+                            <!-- Obsah pilířů -->
+                            <div id="pillar-content-L" class="pillar-panel space-y-3">
+                                <div class="p-4 rounded-2xl bg-elmont-copper/20 border border-elmont-copper/40">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="w-10 h-10 rounded-xl bg-elmont-copper text-amber-200 flex items-center justify-center font-bold flex-shrink-0">
+                                            <i class="fa-solid fa-industry"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-mono text-xs text-amber-300">VODIČ L · SILNOPROUD</div>
+                                            <h3 class="font-heading font-bold text-base text-white">Výkonové rozvody a rozvaděče</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-slate-300 leading-relaxed">
+                                        Kompletní domovní elektroinstalace, průmyslové haly, kabelové trasy a zakázková výroba rozvaděčů osazených přístroji ABB, Schneider a OEZ.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div id="pillar-content-PE" class="pillar-panel hidden space-y-3">
+                                <div class="p-4 rounded-2xl bg-elmont-volt/10 border border-elmont-volt/30">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="w-10 h-10 rounded-xl bg-elmont-volt text-elmont-base flex items-center justify-center font-bold flex-shrink-0">
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-mono text-xs text-elmont-volt">VODIČ PE · BEZPEČNOST</div>
+                                            <h3 class="font-heading font-bold text-base text-white">Revize ČSN a hromosvody</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-slate-300 leading-relaxed">
+                                        Výchozí i pravidelné revize elektroinstalací, spotřebičů a hromosvodů (LPS). Přepěťové ochrany T1+T2+T3 a precizní uzemnění.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div id="pillar-content-N" class="pillar-panel hidden space-y-3">
+                                <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-400/30">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="w-10 h-10 rounded-xl bg-sky-500 text-elmont-base flex items-center justify-center font-bold flex-shrink-0">
+                                            <i class="fa-solid fa-microchip"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-mono text-xs text-sky-300">VODIČ N · SMART &amp; FVE</div>
+                                            <h3 class="font-heading font-bold text-base text-white">Loxone automatizace &amp; Wallboxy</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-slate-300 leading-relaxed">
+                                        Inteligentní řízení domácnosti Loxone, KNX, příprava pro fotovoltaické elektrárny a instalace rychlonabíjecích stanic (11–22 kW).
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between">
+                                <span class="font-mono text-xs text-slate-400">Záruka na montáž: <strong class="text-white">60 měsíců</strong></span>
+                                <a href="o-nas.html" class="text-xs font-bold text-elmont-volt hover:underline">O naší firmě &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,12 +253,23 @@
         </div>
     </footer>
 
+    <!-- Skript pro přepínání pilířů -->
     <script>
         document.querySelectorAll('.pillar-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 const target = tab.dataset.pillar;
-                document.querySelectorAll('.pillar-tab').forEach(t => t.classList.remove('active', 'border-elmont-copper', 'bg-elmont-copper/40', 'border-elmont-volt', 'text-white'));
-                tab.classList.add('active', 'text-white', 'border-elmont-volt');
+                
+                document.querySelectorAll('.pillar-tab').forEach(t => {
+                    t.classList.remove('active', 'border-elmont-copper', 'bg-elmont-copper/40', 'border-elmont-volt', 'bg-elmont-volt/20', 'border-sky-400', 'bg-sky-500/20', 'text-white');
+                    t.classList.add('border-slate-700', 'bg-elmont-base', 'text-slate-300');
+                });
+
+                tab.classList.remove('border-slate-700', 'bg-elmont-base', 'text-slate-300');
+                tab.classList.add('active', 'text-white');
+                if (target === 'L') tab.classList.add('border-elmont-copper', 'bg-elmont-copper/40');
+                if (target === 'PE') tab.classList.add('border-elmont-volt', 'bg-elmont-volt/20');
+                if (target === 'N') tab.classList.add('border-sky-400', 'bg-sky-500/20');
+
                 document.querySelectorAll('.pillar-panel').forEach(p => p.classList.add('hidden'));
                 document.getElementById(`pillar-content-${target}`).classList.remove('hidden');
             });
