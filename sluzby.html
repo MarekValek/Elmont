@@ -1,97 +1,44 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Služby | ELMONT – Elektroinstalace & Montáže</title>
-  <link rel="icon" type="image/png" href="images/elmont.png"> 
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELMONT – Služby a elektromontáže</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { elmont: { base: '#070B14', surface: '#0E1626', volt: '#C5F03D' } } } } }
+    </script>
 </head>
-<body>
-  <div class="conductor-bar"></div>
-  <header class="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html">Domů</a>
-        <a href="sluzby.html" class="active">Služby</a>
-        <a href="kalkulacka.html">Kalkulačka</a>
-        <a href="realizace.html">Realizace</a>
-        <a href="o-nas.html">O nás</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
-      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="badge">🛠️ Kompletní portfolio prací</div>
-    <h1>Elektroinstalace od <span class="text-volt">A do Z</span></h1>
-    <p class="lead">Zajišťujeme kompletní dodávku silnoproudých a slaboproudých technologií včetně projekce, dodávky materiálu a revizní zprávy.</p>
-
-    <div class="grid-3">
-      <div class="card">
-        <img src="images/sluzba-byty.jpg" alt="Bytové a domovní elektroinstalace" class="card-img">
-        <h3 style="margin-bottom:0.5rem;">Bytové & domovní instalace</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.2rem;">Kompletní rozvody v novostavbách i rekonstrukce bytových jader. Montáž zásuvek, vypínačů, LED osvětlení a přípojek spotřebičů.</p>
-        <a href="kontakt.html?poptavka=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20bytovou%20/%20domovn%C3%AD%20elektroinstalaci." class="btn-secondary" style="width:100%; justify-content:center;">Poptat službu</a>
-      </div>
-
-      <div class="card">
-        <img src="images/sluzba-rozvadece.jpg" alt="Průmyslové rozvaděče a haly" class="card-img">
-        <h3 style="margin-bottom:0.5rem;">Průmysl & výroba rozvaděčů</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.2rem;">Zakázková výroba domovních i průmyslových rozvaděčů (ABB, Schneider, Eaton), kabelové trasy, napájení strojů a kompenzace účiníku.</p>
-        <a href="kontakt.html?poptavka=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20pr%C5%AFmyslovou%20instalaci%20/%20rozvad%C4%9B%C4%8D." class="btn-secondary" style="width:100%; justify-content:center;">Poptat službu</a>
-      </div>
-
-      <div class="card">
-        <img src="images/sluzba-fve.jpg" alt="Fotovoltaika a Wallboxy" class="card-img">
-        <h3 style="margin-bottom:0.5rem;">Fotovoltaika & Wallboxy</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.2rem;">AC/DC zapojení fotovoltaických elektráren, přepěťové ochrany, instalace chytrých nabíjecích stanic pro elektromobily s řízením výkonu.</p>
-        <a href="kontakt.html?poptavka=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20zapojen%C3%AD%20FVE%20/%20Wallboxu." class="btn-secondary" style="width:100%; justify-content:center;">Poptat službu</a>
-      </div>
-
-      <div class="card">
-        <img src="images/sluzba-smarthome.jpg" alt="Chytrá domácnost Loxone" class="card-img">
-        <h3 style="margin-bottom:0.5rem;">Smart Home & Slaboproud</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.2rem;">Chytré řízení osvětlení, žaluzií a vytápění (Loxone), strukturovaná kabeláž, kamerové systémy CCTV, EZS a domácí videotelefony.</p>
-        <a href="kontakt.html?poptavka=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20chytr%C3%A9%20%C5%99%C3%ADzen%C3%AD%20/%20slaboproud." class="btn-secondary" style="width:100%; justify-content:center;">Poptat službu</a>
-      </div>
-
-      <div class="card">
-        <img src="images/sluzba-hromosvody.jpg" alt="Hromosvody a uzemnění" class="card-img">
-        <h3 style="margin-bottom:0.5rem;">Hromosvody & Uzemnění</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.2rem;">Montáž klasických i aktivních hromosvodů dle ČSN EN 62305, základové zemniče a víceúrovňové přepěťové ochrany T1+T2+T3.</p>
-        <a href="kontakt.html?poptavka=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20mont%C3%A1%C5%BE%20hromosvodu." class="btn-secondary" style="width:100%; justify-content:center;">Poptat službu</a>
-      </div>
-
-      <div class="card">
-        <img src="images/sluzba-revize.jpg" alt="Revize elektroinstalací" class="card-img">
-        <h3 style="margin-bottom:0.5rem;">Revize & Servis 24/7</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.2rem;">Výchozí a pravidelné revize elektroinstalací, spotřebičů, ručního nářadí a hromosvodů. Rychlá diagnostika a opravy poruch.</p>
-        <a href="kontakt.html?poptavka=Dobr%C3%BD%20den%2C%20pot%C5%99ebuji%20revizi%20elektroinstalace." class="btn-secondary" style="width:100%; justify-content:center;">Objednat revizi</a>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </div>
-      <div style="color:var(--text-muted); font-size:0.88rem;">
-        📞 <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:#fff; text-decoration:none; font-weight:700;"></a> &nbsp;|&nbsp;
-        ✉️ <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--volt); text-decoration:none; font-weight:700;"></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+<body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
+    <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-heading font-extrabold text-xl text-white">ELMONT</a>
+            <nav class="flex gap-4 text-sm font-bold">
+                <a href="index.html" class="text-slate-300">Domů</a>
+                <a href="sluzby.html" class="text-elmont-volt">Služby</a>
+                <a href="kalkulacka.html" class="text-slate-300">Kalkulačka</a>
+                <a href="realizace.html" class="text-slate-300">Realizace</a>
+                <a href="kontakt.html" class="text-slate-300">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 py-16 flex-grow">
+        <h1 class="text-4xl font-extrabold mb-6">Naše elektromontážní služby</h1>
+        <p class="text-slate-300 mb-10">Kompletní dodávky silnoproudu, fotovoltaiky, revizí a chytrých domů Loxone na klíč.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-elmont-surface p-8 rounded-3xl border border-slate-800">
+                <h3 class="text-2xl font-bold mb-3">Bytové &amp; domovní elektroinstalace</h3>
+                <p class="text-slate-400 text-sm mb-4">Rekonstrukce bytů, rozvody pro novostavby rodinných domů a kompletní osazení rozvaděčů.</p>
+                <a href="kontakt.html" class="text-elmont-volt font-bold text-sm">Poptat službu →</a>
+            </div>
+            <div class="bg-elmont-surface p-8 rounded-3xl border border-slate-800">
+                <h3 class="text-2xl font-bold mb-3">Průmyslové rozvaděče &amp; haly</h3>
+                <p class="text-slate-400 text-sm mb-4">Výkonové silnoproudé rozvody, připojení technologií, kabelové trasy a nouzové osvětlení.</p>
+                <a href="kontakt.html" class="text-elmont-volt font-bold text-sm">Poptat službu →</a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-elmont-base border-t border-slate-800 py-6 text-center text-xs text-slate-500">&copy; 2026 ELMONT</footer>
 </body>
 </html>
