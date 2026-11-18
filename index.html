@@ -8,21 +8,90 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* --- ANIMOVANÉ ELEKTRICKÉ ČÁRY (PROUD) NA POZADÍ --- */
+    .cyber-bg { position: relative; overflow-x: hidden; }
+    .electric-line-1 {
+      position: fixed; top: 18%; left: -100%; width: 200%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--volt), transparent);
+      animation: moveElectricLine 6s linear infinite; z-index: 0; pointer-events: none; opacity: 0.65;
+    }
+    .electric-line-2 {
+      position: fixed; top: 62%; left: -100%; width: 160%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      animation: moveElectricLine 9s linear infinite 2s; z-index: 0; pointer-events: none; opacity: 0.55;
+    }
+    @keyframes moveElectricLine {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(65%); }
+    }
+
+    /* --- HERO & 3-VODIČOVÁ KARTA --- */
+    .hero-section { position: relative; padding: 3.5rem 0 4rem 0; z-index: 2; }
     .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
-    .hero-visual { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid rgba(198, 230, 46, 0.35); box-shadow: 0 25px 60px rgba(0,0,0,0.65); }
-    .hero-visual img { width: 100%; height: 420px; object-fit: cover; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, #070b14 12%, transparent 65%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.75rem; }
-    .wire-tabs { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .wire-tab { padding: 0.75rem 1.25rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-weight: 700; cursor: pointer; transition: 0.2s; }
-    .wire-tab.active[data-w="L"] { border-color: #a16207; background: rgba(99, 54, 27, 0.35); color: #fde68a; }
-    .wire-tab.active[data-w="PE"] { border-color: var(--volt); background: rgba(198, 230, 46, 0.15); color: var(--volt); }
-    .wire-tab.active[data-w="N"] { border-color: var(--cyan); background: rgba(56, 189, 248, 0.15); color: var(--cyan); }
-    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+
+    .wire-card {
+      background: rgba(13, 20, 36, 0.9);
+      border: 1px solid rgba(198, 230, 46, 0.28);
+      border-radius: 22px;
+      padding: 2rem;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    .wire-btns {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;
+      margin-bottom: 1.5rem; background: #070b14; padding: 0.45rem;
+      border-radius: 14px; border: 1px solid var(--border);
+    }
+
+    .wire-btn {
+      padding: 0.65rem 0.5rem; border-radius: 10px; border: 1px solid transparent;
+      background: transparent; color: var(--text-muted); font-weight: 800;
+      font-size: 0.8rem; letter-spacing: 0.04em; cursor: pointer; transition: 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+
+    .wire-btn.active[data-target="L"] {
+      background: rgba(99, 54, 27, 0.45); border-color: #a16207; color: #fde68a;
+      box-shadow: 0 0 18px rgba(99, 54, 27, 0.5);
+    }
+    .wire-btn.active[data-target="PE"] {
+      background: rgba(198, 230, 46, 0.16); border-color: var(--volt); color: var(--volt);
+      box-shadow: 0 0 18px rgba(198, 230, 46, 0.35);
+    }
+    .wire-btn.active[data-target="N"] {
+      background: rgba(2, 132, 199, 0.2); border-color: var(--cyan); color: var(--cyan);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+    }
+
+    .wire-box {
+      background: rgba(7, 11, 20, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+    .wire-box.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      margin-top: 4.5rem; border-top: 1px solid var(--border); padding-top: 2.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .stats-bar { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body>
+<body class="cyber-bg">
+  <!-- Animovaný elektrický proud na pozadí -->
+  <div class="electric-line-1"></div>
+  <div class="electric-line-2"></div>
+
   <div class="conductor-bar"></div>
-  <header class="navbar">
+  <header class="navbar" style="position: sticky; z-index: 100;">
     <div class="nav-inner">
       <a href="index.html" class="brand">
         <img src="images/elmont/elmont_logo.png" alt="ELMONT Logo">
@@ -34,65 +103,102 @@
       <nav class="nav-links" id="navLinks">
         <a href="index.html" class="active">Domů</a>
         <a href="sluzby.html">Služby</a>
-        <a href="kalkulacka.html">Kalkulačka</a>
+        <a href="kalkulacka.html">Kalkulačka <span style="font-size:0.65rem; background:var(--volt); color:#070b14; padding:1px 5px; border-radius:4px; font-weight:800;">2026</span></a>
         <a href="realizace.html">Realizace</a>
         <a href="o-nas.html">O nás</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
-      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <a href="#" data-contact-href="telefonHref" class="btn-secondary" style="padding: 0.55rem 1rem; font-size: 0.85rem;">📞 <span data-contact="telefon"></span></a>
+        <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
+      </div>
       <button class="mobile-toggle" id="mobileToggle">☰</button>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container hero-section">
+    <!-- Horní Hero sekce -->
     <section class="hero-grid">
       <div>
-        <div class="badge">⚡ Silnoproud • Slaboproud • Smart Home • FVE</div>
-        <h1>Energie pod kontrolou. <span class="text-volt">Precizní elektro</span> bez kompromisů.</h1>
-        <p class="lead">Kompletní elektroinstalace pro rodinné domy, bytové komplexy i průmyslové haly. Od projektu a výroby rozvaděčů až po finální revizi.</p>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.2rem;">
+          <span class="badge" style="margin-bottom:0;">⚡ REVIZE ČSN 33 1500 & NV 194/2022</span>
+          <span class="badge" style="margin-bottom:0; background:rgba(255,255,255,0.04); border-color:var(--border); color:var(--text-muted);">L1 / PE / N · PRECISE ARCHITECTURE</span>
+        </div>
+        <h1>Síla, bezpečnost a dokonalá elektrika <span class="text-volt">na klíč.</span></h1>
+        <p class="lead">Profesionální silnoproudé elektroinstalace, průmyslové rozvaděče, fotovoltaika, wallboxy a inteligentní domy Loxone. Precizní řemeslo s 60měsíční zárukou.</p>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-          <a href="kalkulacka.html" class="btn-primary">Spočítat cenu online →</a>
-          <a href="#" data-contact-href="telefonHref" class="btn-secondary">📞 <span data-contact="telefon"></span></a>
+          <a href="kalkulacka.html" class="btn-primary">🧮 Spočítat cenu online</a>
+          <a href="sluzby.html" class="btn-secondary">Prozkoumat služby →</a>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <img src="images/hero-bg.jpg" alt="ELMONT Elektroinstalace a rozvaděče">
-        <div class="hero-overlay">
-          <div style="display:flex; gap:1.75rem;">
-            <div><strong style="font-size:1.6rem; color:var(--volt);">15+ let</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">praxe v oboru</span></div>
-            <div><strong style="font-size:1.6rem; color:var(--cyan);">1 200+</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">hotových zakázek</span></div>
-            <div><strong style="font-size:1.6rem; color:#fff;">100 %</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">revizní jistota</span></div>
-          </div>
+      <!-- Pravá interaktivní karta: Architektura ELMONT -->
+      <div class="wire-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); font-weight:700;">ARCHITEKTURA ELMONT</span>
+          <span style="font-size:0.78rem; font-weight:800; color:var(--volt); background:rgba(198,230,46,0.12); border:1px solid rgba(198,230,46,0.3); padding:0.2rem 0.65rem; border-radius:6px;">400V / 230V</span>
+        </div>
+        <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:1.25rem;">3 pilíře našich instalací</h3>
+
+        <div class="wire-btns">
+          <button class="wire-btn active" data-target="L" onclick="switchPillar('L', this)">
+            <span style="width:8px; height:8px; border-radius:50%; background:#a16207; display:inline-block;"></span> L · FÁZE
+          </button>
+          <button class="wire-btn" data-target="PE" onclick="switchPillar('PE', this)">
+            <span style="width:8px; height:8px; border-radius:50%; background:#c6e62e; display:inline-block;"></span> PE · OCHRANA
+          </button>
+          <button class="wire-btn" data-target="N" onclick="switchPillar('N', this)">
+            <span style="width:8px; height:8px; border-radius:50%; background:#38bdf8; display:inline-block;"></span> N · SMART
+          </button>
+        </div>
+
+        <div class="wire-box active" id="pillar-L">
+          <div style="font-size:0.75rem; font-weight:800; letter-spacing:0.08em; color:#fde68a; text-transform:uppercase; margin-bottom:0.35rem;">VODIČ L · SILNOPROUD</div>
+          <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:0.5rem;">Výkonové rozvody a rozvaděče</h4>
+          <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.6;">Kompletní domovní elektroinstalace, průmyslové haly, kabelové trasy a zakázková výroba rozvaděčů osazených přístroji ABB, Schneider a OEZ.</p>
+        </div>
+
+        <div class="wire-box" id="pillar-PE">
+          <div style="font-size:0.75rem; font-weight:800; letter-spacing:0.08em; color:var(--volt); text-transform:uppercase; margin-bottom:0.35rem;">VODIČ PE · OCHRANA & REVIZE</div>
+          <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:0.5rem;">Bezpečnost dle platných norem ČSN</h4>
+          <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.6;">Každou instalaci měříme kalibrovanými přístroji Fluke/Metrel. Součástí předání je vždy výchozí revizní zpráva a protokol o kusové zkoušce.</p>
+        </div>
+
+        <div class="wire-box" id="pillar-N">
+          <div style="font-size:0.75rem; font-weight:800; letter-spacing:0.08em; color:var(--cyan); text-transform:uppercase; margin-bottom:0.35rem;">VODIČ N · SMART HOME & FVE</div>
+          <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:0.5rem;">Chytré řízení a čistá energie</h4>
+          <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.6;">Propojujeme fotovoltaiku, nabíjecí wallboxy, vytápění, stínění i zabezpečení (Loxone) do jednoho intuitivního systému.</p>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.35rem; border-top:1px solid var(--border); padding-top:1rem; font-size:0.84rem;">
+          <span style="color:var(--text-muted);">Záruka na montáž: <strong style="color:#fff;">60 měsíců</strong></span>
+          <a href="o-nas.html" style="color:var(--volt); text-decoration:none; font-weight:700;">O naší firmě →</a>
         </div>
       </div>
     </section>
 
-    <section style="margin-top:5rem;">
-      <div class="badge">🔌 Architektura naší práce</div>
-      <h2 style="font-size:2rem; font-weight:800; margin-bottom:1.5rem;">Tři pilíře bezpečné elektroinstalace</h2>
-
-      <div class="wire-tabs">
-        <button class="wire-tab active" data-w="L" onclick="switchWire('L', this)">L • Fázový výkon (Silnoproud)</button>
-        <button class="wire-tab" data-w="PE" onclick="switchWire('PE', this)">PE • Ochrana a revize</button>
-        <button class="wire-tab" data-w="N" onclick="switchWire('N', this)">N • Chytré řízení & FVE</button>
+    <!-- Statistický panel -->
+    <section class="stats-bar">
+      <div>
+        <div style="font-size:2rem; font-weight:900; color:var(--volt);">15+</div>
+        <div style="font-size:0.82rem; color:var(--text-muted);">Let praxe v oboru</div>
       </div>
-
-      <div class="card wire-panel" id="panel-L">
-        <h3 style="color:#fde68a; margin-bottom:0.5rem;">Maximální výkon a dimenzování bez přetížení</h3>
-        <p style="color:var(--text-muted);">Navrhujeme a realizujeme silnoproudé rozvody, hlavní domovní vedení i průmyslové rozvaděče s dostatečnou výkonovou rezervou a přehledným značením každého okruhu.</p>
+      <div>
+        <div style="font-size:2rem; font-weight:900; color:#fff;">850+</div>
+        <div style="font-size:0.82rem; color:var(--text-muted);">Hotových zakázek</div>
       </div>
-      <div class="card wire-panel" id="panel-PE" style="display:none;">
-        <h3 style="color:var(--volt); margin-bottom:0.5rem;">Bezpečnost na prvním místě dle norem ČSN</h3>
-        <p style="color:var(--text-muted);">Každou instalaci měříme kalibrovanými přístroji Fluke/Metrel. Součástí předání je vždy kompletní výchozí revizní zpráva a protokol o kusové zkoušce rozvaděče.</p>
+      <div>
+        <div style="font-size:2rem; font-weight:900; color:var(--cyan);">100 %</div>
+        <div style="font-size:0.82rem; color:var(--text-muted);">Platné ČSN revize</div>
       </div>
-      <div class="card wire-panel" id="panel-N" style="display:none;">
-        <h3 style="color:var(--cyan); margin-bottom:0.5rem;">Moderní technologie Loxone, FVE a Wallboxy</h3>
-        <p style="color:var(--text-muted);">Propojujeme fotovoltaiku, nabíjení elektromobilů, vytápění, stínění i zabezpečení do jednoho intuitivního systému ovládaného z mobilu.</p>
+      <div>
+        <div style="font-size:2rem; font-weight:900; color:#fff;">JMK & ČR</div>
+        <div style="font-size:0.82rem; color:var(--text-muted);">Pohotovost 24/7</div>
       </div>
     </section>
 
-    <section style="margin-top:4rem;" class="grid-3">
+    <!-- Rozcestník stránek -->
+    <section style="margin-top:4.5rem;" class="grid-3">
       <div class="card">
         <h3 style="margin-bottom:0.5rem;">Kompletní služby</h3>
         <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:1.25rem;">Bytové instalace, průmysl, hromosvody, datové sítě i pravidelné revize.</p>
@@ -111,10 +217,10 @@
     </section>
   </main>
 
-  <footer>
+  <footer style="position: relative; z-index: 10;">
     <div class="footer-inner">
       <div class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
+        <img src="images/elmont/elmont_logo.png" alt="ELMONT Logo" style="height:38px;">
         <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
       </div>
       <div style="color:var(--text-muted); font-size:0.88rem;">
@@ -126,5 +232,14 @@
 
   <script src="config.js"></script>
   <script src="app.js"></script>
+  <script>
+    function switchPillar(target, btn) {
+      document.querySelectorAll('.wire-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.wire-box').forEach(c => c.classList.remove('active'));
+      const activeEl = document.getElementById('pillar-' + target);
+      if (activeEl) activeEl.classList.add('active');
+    }
+  </script>
 </body>
 </html>
