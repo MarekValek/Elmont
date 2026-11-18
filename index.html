@@ -11,7 +11,7 @@
     .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
     .hero-visual { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid rgba(198, 230, 46, 0.35); box-shadow: 0 25px 60px rgba(0,0,0,0.65); }
     .hero-visual img { width: 100%; height: 420px; object-fit: cover; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, #070b14 10%, transparent 65%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.75rem; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, #070b14 12%, transparent 65%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.75rem; }
     .wire-tabs { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
     .wire-tab { padding: 0.75rem 1.25rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-weight: 700; cursor: pointer; transition: 0.2s; }
     .wire-tab.active[data-w="L"] { border-color: #a16207; background: rgba(99, 54, 27, 0.35); color: #fde68a; }
@@ -25,10 +25,10 @@
   <header class="navbar">
     <div class="nav-inner">
       <a href="index.html" class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" data-fallback>
+        <img src="images/logo.png" alt="ELMONT Logo">
         <div class="brand-text">
-          <strong>ELMONT</strong>
-          <span>Elektroinstalace & Montáže</span>
+          <strong data-contact="nazevFirmy">ELMONT</strong>
+          <span data-contact="podtitul">Elektroinstalace & Montáže</span>
         </div>
       </a>
       <nav class="nav-links" id="navLinks">
@@ -39,7 +39,7 @@
         <a href="o-nas.html">O nás</a>
         <a href="kontakt.html">Kontakt</a>
       </nav>
-      <a href="tel:+420777123456" class="sos-btn">⚡ Pohotovost 24/7</a>
+      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
       <button class="mobile-toggle" id="mobileToggle">☰</button>
     </div>
   </header>
@@ -52,14 +52,14 @@
         <p class="lead">Kompletní elektroinstalace pro rodinné domy, bytové komplexy i průmyslové haly. Od projektu a výroby rozvaděčů až po finální revizi.</p>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
           <a href="kalkulacka.html" class="btn-primary">Spočítat cenu online →</a>
-          <a href="realizace.html" class="btn-secondary">Prohlédnout realizace</a>
+          <a href="#" data-contact-href="telefonHref" class="btn-secondary">📞 <span data-contact="telefon"></span></a>
         </div>
       </div>
 
       <div class="hero-visual">
-        <img src="images/hero-bg.jpg" alt="ELMONT Rozvaděč a elektroinstalace" data-fallback>
+        <img src="images/hero-bg.jpg" alt="ELMONT Elektroinstalace a rozvaděče">
         <div class="hero-overlay">
-          <div style="display:flex; gap:1.5rem;">
+          <div style="display:flex; gap:1.75rem;">
             <div><strong style="font-size:1.6rem; color:var(--volt);">15+ let</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">praxe v oboru</span></div>
             <div><strong style="font-size:1.6rem; color:var(--cyan);">1 200+</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">hotových zakázek</span></div>
             <div><strong style="font-size:1.6rem; color:#fff;">100 %</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">revizní jistota</span></div>
@@ -68,7 +68,6 @@
       </div>
     </section>
 
-    <!-- Interaktivní 3-vodičový systém -->
     <section style="margin-top:5rem;">
       <div class="badge">🔌 Architektura naší práce</div>
       <h2 style="font-size:2rem; font-weight:800; margin-bottom:1.5rem;">Tři pilíře bezpečné elektroinstalace</h2>
@@ -93,7 +92,6 @@
       </div>
     </section>
 
-    <!-- Rozcestník stránek -->
     <section style="margin-top:4rem;" class="grid-3">
       <div class="card">
         <h3 style="margin-bottom:0.5rem;">Kompletní služby</h3>
@@ -116,12 +114,17 @@
   <footer>
     <div class="footer-inner">
       <div class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;" data-fallback>
-        <div class="brand-text"><strong>ELMONT</strong><span>Elektroinstalace & Montáže</span></div>
+        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
+        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
       </div>
-      <p style="color:var(--text-muted); font-size:0.85rem;">© 2026 ELMONT – Elektroinstalace & Montáže. Všechna práva vyhrazena.</p>
+      <div style="color:var(--text-muted); font-size:0.88rem;">
+        📞 <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:#fff; text-decoration:none; font-weight:700;"></a> &nbsp;|&nbsp;
+        ✉️ <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--volt); text-decoration:none; font-weight:700;"></a>
+      </div>
     </div>
   </footer>
+
+  <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
