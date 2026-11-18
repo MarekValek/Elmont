@@ -76,13 +76,23 @@
 
     <div class="h-1.5 w-full wire-bar-3phase sticky top-0 z-50"></div>
 
-    <!-- HLAVNÍ NAVIGACE S REÁLNÝM LOGEM -->
+    <!-- HLAVNÍ NAVIGACE (NAHOŘE) – Zde je vektorová ikona -->
     <header class="sticky top-1.5 z-40 bg-elmont-base/90 backdrop-blur-xl border-b border-slate-800 shadow-cyber">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="flex items-center gap-3.5 group focus:outline-none">
-                    <div class="w-12 h-12 flex-shrink-0 relative overflow-hidden rounded-2xl bg-elmont-surface border border-slate-700 p-1 flex items-center justify-center">
-                        <img src="images/elmont/elmont_logo.png" alt="ELMONT Logo" class="w-full h-full object-contain">
+                    <div class="w-12 h-12 flex-shrink-0 relative overflow-hidden rounded-2xl bg-elmont-surface border border-slate-700 p-1.5 flex items-center justify-center">
+                        <svg viewBox="0 0 124 124" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip-gear-left)" fill="#0A2540"><use href="#elmont-gear-shape"/></g>
+                            <g clip-path="url(#clip-gear-right-top)" fill="#63361B"><use href="#elmont-gear-shape"/></g>
+                            <g clip-path="url(#clip-gear-right-bottom)" fill="#0A2540"><use href="#elmont-gear-shape"/></g>
+                            <g clip-path="url(#clip-lightning-bolt)">
+                                <polygon points="80,2 25,70 47,70 84,12" fill="#63361B"/>
+                                <polygon points="84,4 34,120 53,120 88,12" fill="#D4E157"/>
+                                <polygon points="85,7 39,120 49,120 87,12" fill="#A4C639"/>
+                                <polygon points="88,10 47,122 100,55 72,55" fill="#0F4C81"/>
+                            </g>
+                        </svg>
                     </div>
                     <div class="flex flex-col leading-none">
                         <span class="font-heading font-extrabold text-2xl tracking-tight text-white">ELMONT</span>
@@ -233,22 +243,12 @@
         </div>
     </main>
 
-    <!-- PATIČKA S VEKTOROVOU IKONOU (OZUBENÉ KOLO) -->
+    <!-- FOOTER (DOLE) – Zde je soubor images/elmont/elmont_logo.png -->
     <footer class="bg-elmont-base text-slate-300 border-t-2 border-elmont-volt py-10 mt-auto">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 flex-shrink-0 relative overflow-hidden rounded-xl bg-elmont-surface border border-slate-700 p-1 flex items-center justify-center">
-                    <svg viewBox="0 0 124 124" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip-gear-left)" fill="#0A2540"><use href="#elmont-gear-shape"/></g>
-                        <g clip-path="url(#clip-gear-right-top)" fill="#63361B"><use href="#elmont-gear-shape"/></g>
-                        <g clip-path="url(#clip-gear-right-bottom)" fill="#0A2540"><use href="#elmont-gear-shape"/></g>
-                        <g clip-path="url(#clip-lightning-bolt)">
-                            <polygon points="80,2 25,70 47,70 84,12" fill="#63361B"/>
-                            <polygon points="84,4 34,120 53,120 88,12" fill="#D4E157"/>
-                            <polygon points="85,7 39,120 49,120 87,12" fill="#A4C639"/>
-                            <polygon points="88,10 47,122 100,55 72,55" fill="#0F4C81"/>
-                        </g>
-                    </svg>
+                <div class="w-12 h-12 flex-shrink-0 relative overflow-hidden rounded-xl bg-elmont-surface border border-slate-700 p-1 flex items-center justify-center">
+                    <img src="images/elmont/elmont_logo.png" alt="ELMONT Logo" class="w-full h-full object-contain">
                 </div>
                 <span class="text-xs text-slate-500">&copy; 2026 ELMONT – Elektroinstalace &amp; Montáže s.r.o. Všechna práva vyhrazena.</span>
             </div>
