@@ -1,76 +1,26 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O nás | ELMONT – Elektroinstalace & Montáže</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELMONT – O nás</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { elmont: { base: '#070B14', surface: '#0E1626', volt: '#C5F03D' } } } } }</script>
 </head>
-<body>
-  <div class="conductor-bar"></div>
-  <header class="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html">Domů</a>
-        <a href="sluzby.html">Služby</a>
-        <a href="kalkulacka.html">Kalkulačka</a>
-        <a href="realizace.html">Realizace</a>
-        <a href="o-nas.html" class="active">O nás</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
-      <a href="#" data-contact-href="havarijniHref" class="sos-btn">⚡ SOS <span data-contact="havarijniLinka"></span></a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="grid-2" style="align-items:center;">
-      <div>
-        <div class="badge">🛡️ O společnosti ELMONT</div>
-        <h1>Řemeslná poctivost a <span class="text-volt">moderní technologie</span></h1>
-        <p style="color:var(--text-muted); margin-bottom:1.25rem;">Jsme tým certifikovaných elektrikářů a revizních techniků. Zakládáme si na čisté práci, přehledně vyvázaných rozvaděčích a dodržování dohodnutých termínů i rozpočtu.</p>
-        <p style="color:var(--text-muted); margin-bottom:2rem;">Používáme výhradně osvědčené komponenty značek ABB, Schneider Electric, Eaton, Hager a Loxone. Každá zakázka prochází důkladným měřením a předáním kompletní dokumentace.</p>
-        <a href="kontakt.html" class="btn-primary">Domluvit konzultaci →</a>
-      </div>
-      <div>
-        <img src="images/o-nas-tym.jpg" alt="Tým elektrikářů ELMONT" style="width:100%; border-radius:20px; border:1px solid var(--border); display:block;">
-      </div>
-    </div>
-
-    <div class="grid-3" style="margin-top:4rem;">
-      <div class="card">
-        <h3 style="color:var(--volt); margin-bottom:0.5rem;">NV č. 194/2022 Sb.</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem;">Všichni naši technici disponují platnou odbornou způsobilostí v elektrotechnice pro samostatné řízení činností i revize.</p>
-      </div>
-      <div class="card">
-        <h3 style="color:var(--cyan); margin-bottom:0.5rem;">Kalibrovaná technika</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem;">Měření smyčky, izolačních odporů i proudových chráničů provádíme špičkovými přístroji Fluke a Metrel.</p>
-      </div>
-      <div class="card">
-        <h3 style="color:#fde68a; margin-bottom:0.5rem;">Záruka 60 měsíců</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem;">Za kvalitou naší montáže si stojíme – na provedené elektroinstalační práce poskytujeme rozšířenou záruku.</p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="brand">
-        <img src="images/logo.png" alt="ELMONT Logo" style="height:38px;">
-        <div class="brand-text"><strong data-contact="nazevFirmy">ELMONT</strong><span data-contact="podtitul">Elektroinstalace & Montáže</span></div>
-      </div>
-      <div style="color:var(--text-muted); font-size:0.88rem;">
-        📞 <a href="#" data-contact-href="telefonHref" data-contact="telefon" style="color:#fff; text-decoration:none; font-weight:700;"></a> &nbsp;|&nbsp;
-        ✉️ <a href="#" data-contact-href="emailHref" data-contact="email" style="color:var(--volt); text-decoration:none; font-weight:700;"></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+<body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
+    <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-heading font-extrabold text-xl text-white">ELMONT</a>
+            <nav class="flex gap-4 text-sm font-bold">
+                <a href="index.html" class="text-slate-300">Domů</a>
+                <a href="o-nas.html" class="text-elmont-volt">O nás</a>
+                <a href="kontakt.html" class="text-slate-300">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-4 py-16 flex-grow space-y-6">
+        <h1 class="text-4xl font-extrabold">O firmě ELMONT</h1>
+        <p class="text-slate-300 leading-relaxed">Jsme česká elektromontážní firma postavená na poctivém řemesle, vyhlášce NV č. 194/2022 Sb. a dlouholetých zkušenostech v oboru silnoproudu i revizí.</p>
+    </main>
 </body>
 </html>
