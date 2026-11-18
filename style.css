@@ -290,3 +290,53 @@ footer {
   .mobile-toggle { display: block; }
   .sos-btn { display: none; }
 }
+/* --- ANIMOVANÉ ELEKTRICKÉ ČÁRY NA POZADÍ --- */
+.cyber-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(198, 230, 46, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 230, 46, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Pohybující se elektrická čára 1 */
+.electric-line-1 {
+  position: absolute;
+  top: 15%;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--volt), transparent);
+  animation: moveElectricLine 6s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Pohybující se elektrická čára 2 */
+.electric-line-2 {
+  position: absolute;
+  top: 65%;
+  left: -100%;
+  width: 150%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  animation: moveElectricLine 9s linear infinite 2s;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes moveElectricLine {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(60%); }
+}
