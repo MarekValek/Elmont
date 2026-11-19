@@ -10,17 +10,53 @@
 <body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
     <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="font-heading font-extrabold text-xl text-white">ELMONT</a>
-            <nav class="flex gap-4 text-sm font-bold">
-                <a href="index.html" class="text-slate-300">Domů</a>
+            <a href="index.html" class="font-extrabold text-xl text-white">ELMONT</a>
+            <nav class="flex flex-wrap gap-4 text-sm font-bold">
+                <a href="index.html" class="text-slate-300 hover:text-white">Domů</a>
+                <a href="sluzby.html" class="text-slate-300 hover:text-white">Služby</a>
+                <a href="kalkulacka.html" class="text-slate-300 hover:text-white">Kalkulačka</a>
+                <a href="realizace.html" class="text-slate-300 hover:text-white">Realizace</a>
                 <a href="o-nas.html" class="text-elmont-volt">O nás</a>
-                <a href="kontakt.html" class="text-slate-300">Kontakt</a>
+                <a href="kontakt.html" class="text-slate-300 hover:text-white">Kontakt</a>
             </nav>
         </div>
     </header>
-    <main class="max-w-4xl mx-auto px-4 py-16 flex-grow space-y-6">
-        <h1 class="text-4xl font-extrabold">O firmě ELMONT</h1>
-        <p class="text-slate-300 leading-relaxed">Jsme česká elektromontážní firma postavená na poctivém řemesle, vyhlášce NV č. 194/2022 Sb. a dlouholetých zkušenostech v oboru silnoproudu i revizí.</p>
+
+    <main class="max-w-4xl mx-auto px-4 py-12 flex-grow space-y-8 w-full">
+        <div class="space-y-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold">O firmě ELMONT</h1>
+            <p class="text-slate-300 leading-relaxed">
+                Jsme česká elektromontážní firma postavená na poctivém řemesle, platné legislativě dle nařízení vlády NV č. 194/2022 Sb. a dlouholetých zkušenostech v oboru silnoproudu, automatizace i výchozích revizí.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
+                <div class="text-2xl font-extrabold text-elmont-volt">12+ let</div>
+                <div class="text-sm text-slate-400 mt-1">Zkušeností v oboru elektro</div>
+            </div>
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
+                <div class="text-2xl font-extrabold text-elmont-volt">60 měsíců</div>
+                <div class="text-sm text-slate-400 mt-1">Záruka na provedenou montáž</div>
+            </div>
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
+                <div class="text-2xl font-extrabold text-elmont-volt">NV 194/2022</div>
+                <div class="text-sm text-slate-400 mt-1">Plná odborná kvalifikace (§6–§8)</div>
+            </div>
+        </div>
+
+        <div class="bg-elmont-surface border border-slate-800 rounded-xl p-6 space-y-3">
+            <h2 class="text-xl font-bold">Na čem si zakládáme</h2>
+            <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm sm:text-base">
+                <li><strong>Čistá práce v rozvaděčích:</strong> Používáme osvědčené komponenty ABB, Schneider Electric a OEZ s přehledným popisem okruhů.</li>
+                <li><strong>Revize v ceně zakázky:</strong> Každou instalaci předáváme s výchozí revizní zprávou platnou pro kolaudaci i pojišťovnu.</li>
+                <li><strong>Férové jednání:</strong> Předem sestavený položkový rozpočet bez nečekaných vícenákladů.</li>
+            </ul>
+        </div>
     </main>
+
+    <footer class="border-t border-slate-800 p-6 text-center text-xs text-slate-500">
+        &copy; 2026 ELMONT – Elektroinstalace &amp; Montáže
+    </footer>
 </body>
 </html>
