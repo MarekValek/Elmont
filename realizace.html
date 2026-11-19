@@ -3,33 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELMONT – Realizace a projekty</title>
+    <title>ELMONT – Realizace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { elmont: { base: '#070B14', surface: '#0E1626', volt: '#C5F03D' } } } } }</script>
 </head>
 <body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
     <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="font-heading font-extrabold text-xl text-white">ELMONT</a>
-            <nav class="flex gap-4 text-sm font-bold">
-                <a href="index.html" class="text-slate-300">Domů</a>
+            <a href="index.html" class="font-extrabold text-xl text-white">ELMONT</a>
+            <nav class="flex flex-wrap gap-4 text-sm font-bold">
+                <a href="index.html" class="text-slate-300 hover:text-white">Domů</a>
+                <a href="sluzby.html" class="text-slate-300 hover:text-white">Služby</a>
+                <a href="kalkulacka.html" class="text-slate-300 hover:text-white">Kalkulačka</a>
                 <a href="realizace.html" class="text-elmont-volt">Realizace</a>
-                <a href="kontakt.html" class="text-slate-300">Kontakt</a>
+                <a href="o-nas.html" class="text-slate-300 hover:text-white">O nás</a>
+                <a href="kontakt.html" class="text-slate-300 hover:text-white">Kontakt</a>
             </nav>
         </div>
     </header>
-    <main class="max-w-7xl mx-auto px-4 py-16 flex-grow">
-        <h1 class="text-4xl font-extrabold mb-6">Dokončené realizace</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-elmont-surface rounded-3xl overflow-hidden border border-slate-800 p-6">
-                <h3 class="text-xl font-bold mb-2">Novostavba rodinného domu Kuřim</h3>
-                <p class="text-slate-400 text-sm">Kompletní silnoproudé rozvody 3×25A, 46 jištěných okruhů a revizní zpráva.</p>
+
+    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow space-y-8 w-full">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold">Vybrané realizace</h1>
+            <p class="text-slate-400 mt-2">Ukázky našich dokončených elektroinstalací a rozvaděčů.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5 space-y-3">
+                <span class="text-xs font-mono text-elmont-volt">RODINNÝ DŮM · BRNO</span>
+                <h2 class="text-lg font-bold">Kompletní silnoproud &amp; Loxone</h2>
+                <p class="text-sm text-slate-300">Kabeláž novostavby 5+kk, hlavní rozvaděč 144 modulů, ovládání žaluzií, vytápění a příprava pro FVE.</p>
             </div>
-            <div class="bg-elmont-surface rounded-3xl overflow-hidden border border-slate-800 p-6">
-                <h3 class="text-xl font-bold mb-2">Chytrá domácnost Loxone Tišnov</h3>
-                <p class="text-slate-400 text-sm">Automatizace stínění, vytápění a wallbox 22 kW.</p>
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5 space-y-3">
+                <span class="text-xs font-mono text-elmont-volt">PRŮMYSL · KUŘIM</span>
+                <h2 class="text-lg font-bold">Výrobní hala &amp; LED osvětlení</h2>
+                <p class="text-sm text-slate-300">Kabelové žlaby, zásuvkové kombinace 400V/32A, hlavní jištění a výchozí revize celého objektu.</p>
+            </div>
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5 space-y-3">
+                <span class="text-xs font-mono text-elmont-volt">BYTOVÝ DŮM · TIŠNOV</span>
+                <h2 class="text-lg font-bold">Rekonstrukce stoupaček a ER</h2>
+                <p class="text-sm text-slate-300">Výměna hlavního domovního vedení, osazení nových elektroměrových rozvaděčů pro 18 bytových jednotek.</p>
             </div>
         </div>
     </main>
+
+    <footer class="border-t border-slate-800 p-6 text-center text-xs text-slate-500">
+        &copy; 2026 ELMONT – Elektroinstalace &amp; Montáže
+    </footer>
 </body>
 </html>
