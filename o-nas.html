@@ -3,60 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELMONT – O nás</title>
+    <title>ELMONT – Elektroinstalace &amp; Montáže | O nás</title>
+    <meta name="description" content="Poznejte tým ELMONT. Poctivé elektromontážní řemeslo, revize dle ČSN, kvalifikace NV 194/2022 Sb. a 60měsíční záruka na veškeré instalace.">
+    <meta name="theme-color" content="#070B14">
+    
+    <link rel="icon" type="image/png" href="images/elmont/elmont.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { elmont: { base: '#070B14', surface: '#0E1626', volt: '#C5F03D' } } } } }</script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        elmont: {
+                            base: '#070B14', surface: '#0E1626', cardHover: '#152238',
+                            navy: '#0A2540', blue: '#0F4C81', copper: '#63361B',
+                            lime: '#A4C639', volt: '#C5F03D', yellow: '#D4E157'
+                        }
+                    },
+                    boxShadow: { 'neon': '0 0 35px -5px rgba(197, 240, 61, 0.35)', 'cyber': '0 20px 50px rgba(0, 0, 0, 0.6)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .wire-bar-3phase {
+            background: linear-gradient(90deg, #63361B 0%, #63361B 33.3%, #A4C639 33.3%, #C5F03D 66.6%, #0F4C81 66.6%, #0A2540 100%);
+        }
+    </style>
 </head>
-<body class="bg-elmont-base text-slate-100 flex flex-col min-h-screen">
-    <header class="sticky top-0 z-40 bg-elmont-base/90 border-b border-slate-800 p-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="font-extrabold text-xl text-white">ELMONT</a>
-            <nav class="flex flex-wrap gap-4 text-sm font-bold">
-                <a href="index.html" class="text-slate-300 hover:text-white">Domů</a>
-                <a href="sluzby.html" class="text-slate-300 hover:text-white">Služby</a>
-                <a href="kalkulacka.html" class="text-slate-300 hover:text-white">Kalkulačka</a>
-                <a href="realizace.html" class="text-slate-300 hover:text-white">Realizace</a>
-                <a href="o-nas.html" class="text-elmont-volt">O nás</a>
-                <a href="kontakt.html" class="text-slate-300 hover:text-white">Kontakt</a>
+<body class="bg-elmont-base text-slate-100 antialiased selection:bg-elmont-volt selection:text-elmont-base flex flex-col min-h-screen">
+
+    <!-- Skryté SVG definice vektorového loga -->
+    <svg width="0" height="0" class="hidden" aria-hidden="true">
+        <defs>
+            <g id="elmont-gear-shape">
+                <path d="M54,10 L66,10 L68,20 A39,39 0 0,1 78,24 L86,17 L95,24 L90,34 A39,39 0 0,1 96,43 L107,42 L110,53 L100,58 A39,39 0 0,1 100,66 L110,71 L107,82 L96,81 A39,39 0 0,1 90,90 L95,100 L86,107 L78,100 A39,39 0 0,1 68,104 L66,114 L54,114 L52,104 A39,39 0 0,1 42,100 L34,107 L25,100 L30,90 A39,39 0 0,1 24,81 L13,82 L10,71 L20,66 A39,39 0 0,1 20,58 L10,53 L13,42 L24,43 A39,39 0 0,1 30,34 L25,24 L34,17 L42,24 A39,39 0 0,1 52,20 Z M60,29 A33,33 0 1,0 60,95 A33,33 0 1,0 60,29 Z"/>
+                <circle cx="60" cy="62" r="26.5" fill="none" stroke="currentColor" stroke-width="4.2"/>
+            </g>
+            <clipPath id="clip-gear-left"><polygon points="0,0 78,0 41,124 0,124"/></clipPath>
+            <clipPath id="clip-gear-right-top"><polygon points="84,0 124,0 124,60 64,60"/></clipPath>
+            <clipPath id="clip-gear-right-bottom"><polygon points="64,60 124,60 124,124 47,124"/></clipPath>
+            <clipPath id="clip-lightning-bolt"><polygon points="84,6 37,65 60,65 40,118 88,57 65,57"/></clipPath>
+        </defs>
+    </svg>
+
+    <!-- 3-fázový barevný proužek -->
+    <div class="h-1.5 w-full wire-bar-3phase sticky top-0 z-50"></div>
+
+    <!-- HLAVNÍ NAVIGACE -->
+    <header class="sticky top-1.5 z-40 bg-elmont-base/90 backdrop-blur-xl border-b border-slate-800 shadow-cyber">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3.5 group focus:outline-none">
+                    <div class="w-12 h-12 flex-shrink-0 relative overflow-hidden rounded-2xl bg-elmont-surface border border-slate-700 p-1.5 flex items-center justify-center">
+                        <svg viewBox="0 0 124 124" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip-gear-left)" fill="#0A2540"><use href="#elmont-gear-shape"/></g>
+                            <g clip-path="url(#clip-gear-right-top)" fill="#63361B"><use href="#elmont-gear-shape"/></g>
+                            <g clip-path="url(#clip-gear-right-bottom)" fill="#0A2540"><use href="#elmont-gear-shape"/></g>
+                            <g clip-path="url(#clip-lightning-bolt)">
+                                <polygon points="80,2 25,70 47,70 84,12" fill="#63361B"/>
+                                <polygon points="84,4 34,120 53,120 88,12" fill="#D4E157"/>
+                                <polygon points="85,7 39,120 49,120 87,12" fill="#A4C639"/>
+                                <polygon points="88,10 47,122 100,55 72,55" fill="#0F4C81"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="font-heading font-extrabold text-2xl tracking-tight text-white">ELMONT</span>
+                        <span class="font-heading font-bold text-[9px] tracking-[0.14em] text-elmont-volt mt-0.5">ELEKTROINSTALACE &amp; MONTÁŽE</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-1.5">
+                    <a href="index.html" class="px-4 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-surface transition-all">Domů</a>
+                    <a href="sluzby.html" class="px-4 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-surface transition-all">Služby</a>
+                    <a href="kalkulacka.html" class="px-4 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-surface transition-all">Kalkulačka</a>
+                    <a href="realizace.html" class="px-4 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-surface transition-all">Realizace</a>
+                    <a href="o-nas.html" class="px-4 py-2.5 rounded-xl text-sm font-bold bg-elmont-volt text-elmont-base shadow-neon">O nás</a>
+                    <a href="kontakt.html" class="px-4 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-surface transition-all">Kontakt</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="tel:+420987654123" class="flex items-center gap-2 font-mono text-xs font-bold text-elmont-volt bg-elmont-surface border border-slate-700 px-4 py-2.5 rounded-xl hover:border-elmont-volt transition-all">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+420 987 654 123</span>
+                    </a>
+                    <a href="kontakt.html" class="bg-elmont-volt text-elmont-base font-heading font-bold text-sm px-5 py-2.5 rounded-xl shadow-neon hover:brightness-105 transition-all">Poptávka</a>
+                </div>
+
+                <!-- Mobilní hamburger tlačítko -->
+                <button id="mobile-menu-button" type="button" class="lg:hidden p-2.5 rounded-xl bg-elmont-surface border border-slate-700 text-slate-300 hover:text-elmont-volt focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobilní rozbalovací menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-elmont-surface/95 backdrop-blur-xl border-t border-slate-800 px-4 pt-4 pb-6 space-y-3">
+            <nav class="flex flex-col space-y-1.5">
+                <a href="index.html" class="px-4 py-3 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-base">Domů</a>
+                <a href="sluzby.html" class="px-4 py-3 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-base">Služby</a>
+                <a href="kalkulacka.html" class="px-4 py-3 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-base">Kalkulačka</a>
+                <a href="realizace.html" class="px-4 py-3 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-base">Realizace</a>
+                <a href="o-nas.html" class="px-4 py-3 rounded-xl text-sm font-bold bg-elmont-volt text-elmont-base">O nás</a>
+                <a href="kontakt.html" class="px-4 py-3 rounded-xl text-sm font-bold text-slate-300 hover:bg-elmont-base">Kontakt</a>
             </nav>
+            <div class="pt-3 border-t border-slate-800 flex flex-col gap-3">
+                <a href="tel:+420987654123" class="flex items-center justify-center gap-2 font-mono text-xs font-bold text-elmont-volt bg-elmont-base border border-slate-700 px-4 py-3 rounded-xl">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+420 987 654 123</span>
+                </a>
+                <a href="kontakt.html" class="text-center bg-elmont-volt text-elmont-base font-heading font-bold text-sm px-5 py-3 rounded-xl shadow-neon">Poptávka</a>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-12 flex-grow space-y-8 w-full">
-        <div class="space-y-4">
-            <h1 class="text-3xl sm:text-4xl font-extrabold">O firmě ELMONT</h1>
-            <p class="text-slate-300 leading-relaxed">
-                Jsme česká elektromontážní firma postavená na poctivém řemesle, platné legislativě dle nařízení vlády NV č. 194/2022 Sb. a dlouholetých zkušenostech v oboru silnoproudu, automatizace i výchozích revizí.
-            </p>
-        </div>
+    <!-- OBSAH STRÁNKY O NÁS -->
+    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow space-y-12 w-full">
+        
+        <!-- O firmě -->
+        <section class="space-y-6">
+            <div class="space-y-4">
+                <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">O firmě ELMONT</h1>
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg">
+                    Jsme česká elektromontážní firma postavená na poctivém řemesle, platné legislativě dle nařízení vlády NV č. 194/2022 Sb. a dlouholetých zkušenostech v oboru silnoproudu, automatizace i výchozích revizí.
+                </p>
+            </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
-                <div class="text-2xl font-extrabold text-elmont-volt">12+ let</div>
-                <div class="text-sm text-slate-400 mt-1">Zkušeností v oboru elektro</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
+                    <div class="font-heading text-2xl font-extrabold text-elmont-volt">12+ let</div>
+                    <div class="text-sm text-slate-400 mt-1">Zkušeností v oboru elektro</div>
+                </div>
+                <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
+                    <div class="font-heading text-2xl font-extrabold text-elmont-volt">60 měsíců</div>
+                    <div class="text-sm text-slate-400 mt-1">Záruka na provedenou montáž</div>
+                </div>
+                <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
+                    <div class="font-heading text-2xl font-extrabold text-elmont-volt">NV 194/2022</div>
+                    <div class="text-sm text-slate-400 mt-1">Plná odborná kvalifikace (§6–§8)</div>
+                </div>
             </div>
-            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
-                <div class="text-2xl font-extrabold text-elmont-volt">60 měsíců</div>
-                <div class="text-sm text-slate-400 mt-1">Záruka na provedenou montáž</div>
-            </div>
-            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-5">
-                <div class="text-2xl font-extrabold text-elmont-volt">NV 194/2022</div>
-                <div class="text-sm text-slate-400 mt-1">Plná odborná kvalifikace (§6–§8)</div>
-            </div>
-        </div>
 
-        <div class="bg-elmont-surface border border-slate-800 rounded-xl p-6 space-y-3">
-            <h2 class="text-xl font-bold">Na čem si zakládáme</h2>
-            <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm sm:text-base">
-                <li><strong>Čistá práce v rozvaděčích:</strong> Používáme osvědčené komponenty ABB, Schneider Electric a OEZ s přehledným popisem okruhů.</li>
-                <li><strong>Revize v ceně zakázky:</strong> Každou instalaci předáváme s výchozí revizní zprávou platnou pro kolaudaci i pojišťovnu.</li>
-                <li><strong>Férové jednání:</strong> Předem sestavený položkový rozpočet bez nečekaných vícenákladů.</li>
-            </ul>
-        </div>
+            <div class="bg-elmont-surface border border-slate-800 rounded-xl p-6 space-y-3">
+                <h2 class="font-heading text-xl font-bold text-white">Na čem si zakládáme</h2>
+                <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm sm:text-base">
+                    <li><strong class="text-white">Čistá práce v rozvaděčích:</strong> Používáme osvědčené komponenty ABB, Schneider Electric a OEZ s přehledným popisem okruhů.</li>
+                    <li><strong class="text-white">Revize v ceně zakázky:</strong> Každou instalaci předáváme s výchozí revizní zprávou platnou pro kolaudaci i pojišťovnu.</li>
+                    <li><strong class="text-white">Férové jednání:</strong> Předem sestavený položkový rozpočet bez nečekaných vícenákladů.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Google Recenze zákazníků -->
+        <section class="space-y-6 pt-6 border-t border-slate-800/80">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 font-mono text-xs font-bold px-3 py-1 rounded-lg bg-elmont-volt/10 text-elmont-volt border border-elmont-volt/30 mb-2">
+                        <i class="fa-brands fa-google text-red-400"></i> OVĚŘENÉ HODNOCENÍ
+                    </div>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-white">Co o nás říkají zákazníci</h2>
+                </div>
+                
+                <!-- Tlačítko přímo na Google Mapy -->
+                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 text-sm font-bold text-white bg-elmont-surface hover:bg-elmont-cardHover border border-slate-700 hover:border-elmont-volt px-4 py-2.5 rounded-xl transition-all">
+                    <i class="fa-brands fa-google text-elmont-volt"></i>
+                    <span>5.0</span>
+                    <div class="flex text-amber-400 text-xs gap-0.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-xs text-slate-400 ml-1">Zobrazit na Google &rarr;</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Recenze 1 -->
+                <div class="bg-elmont-surface border border-slate-800 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            "Firma ELMONT nám dělávala kompletní elektroinstalaci v novostavbě rodinného domu v Brně. Naprostá spokojenost, rozvaděč vypadá jako umělecké dílo a revize proběhla bez jediné výtky."
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <div>
+                            <div class="font-bold text-sm text-white">Ing. Martin Novotný</div>
+                            <div class="text-xs text-slate-400">Novostavba RD Brno-venkov</div>
+                        </div>
+                        <i class="fa-brands fa-google text-slate-500 text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Recenze 2 -->
+                <div class="bg-elmont-surface border border-slate-800 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            "Rychlá domluva, skvělá orientace v chytré domácnosti Loxone a čistá práce. Oceňuji také záruku 60 měsíců a férové jednání při nacenění."
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <div>
+                            <div class="font-bold text-sm text-white">Pavel Kříž</div>
+                            <div class="text-xs text-slate-400">Rekonstrukce bytu Brno</div>
+                        </div>
+                        <i class="fa-brands fa-google text-slate-500 text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Recenze 3 -->
+                <div class="bg-elmont-surface border border-slate-800 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            "Potřebovali jsme výchozí revizi pro kolaudaci a zapojení wallboxu na elektromobil. Pánové dorazili včas, vše proměřili a dodali v perfektním pořádku. Doporučuji!"
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <div>
+                            <div class="font-bold text-sm text-white">Petra Svobodová</div>
+                            <div class="text-xs text-slate-400">Instalace wallboxu &amp; revize</div>
+                        </div>
+                        <i class="fa-brands fa-google text-slate-500 text-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="border-t border-slate-800 p-6 text-center text-xs text-slate-500">
-        &copy; 2026 ELMONT – Elektroinstalace &amp; Montáže
+    <!-- FOOTER S OBRÁZKEM LOGA ZE SLOŽKY -->
+    <footer class="bg-elmont-base text-slate-300 border-t-2 border-elmont-volt py-8 sm:py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+                <div class="w-16 h-12 flex-shrink-0 flex items-center justify-center">
+                    <img src="images/elmont/elmont_logo.png" alt="ELMONT Logo" class="w-full h-full object-contain">
+                </div>
+                <span class="text-xs text-slate-500">&copy; 2026 ELMONT – Elektroinstalace &amp; Montáže s.r.o. Všechna práva vyhrazena.</span>
+            </div>
+            <div class="font-mono text-elmont-volt text-xs">L1 / PE / N · 50 Hz</div>
+        </div>
     </footer>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
