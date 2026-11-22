@@ -7,7 +7,7 @@ const ELMONT_CONFIG = {
   havarijniHref: "tel:+420123456789",
   email: "info@elmont-elektro.cz",
   emailHref: "mailto:info@elmont-elektro.cz",
-  adresa: "Technologická 1420/8, 616 00 Brno",
+  adresa: "Technologická 123/4, 616 00 Brno",
   pusobnost: "Brno, Jihomoravský kraj a celá ČR",
   ico: "12345678",
   dic: "CZ12345678",
